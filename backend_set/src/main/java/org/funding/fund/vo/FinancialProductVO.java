@@ -14,8 +14,8 @@ public class FinancialProductVO {
     private Long originalProductId; // 수정 전 상품 (펀딩 출시로 상품 내용이 변경되는 경우, 원래의 상품에 대한 정보)
 
     // 하위 타입 포함 (선택)
-    private DepositVO deposit;
-    private InstallmentVO installment;
+    private SavingsVO deposit;
+    private LoanVO installment;
     private ChallengeVO challenge;
     private DonationVO donation;
 }

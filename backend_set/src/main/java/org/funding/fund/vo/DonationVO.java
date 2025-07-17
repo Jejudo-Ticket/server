@@ -7,11 +7,10 @@ import java.math.BigDecimal;
 @Data
 public class DonationVO {
     private Long donationId; // 기부 상품 id
-    private Long fundingId; // 펀딩 id
-    private String donationName; // 기부 이름
-    private String donationPurpose; // 기부 목적
-    private String donationContent; // 기부 글
-    private BigDecimal targetAmount; // 목표 금액
-    private BigDecimal currentAmount; // 현재 금액
-    private Long peopleCount; // 현재 참여자 수
+    private Long productId; // 상품 ID
+    private String recipient; // 기부처
+    private String usagePlan; // 사용 계획
+    private Integer minDonationAmount; // 최소 기부 금액
+    private Integer maxDonationAmount; // 최대 기부 금액 (nullable)
+    private Long targetAmount; // 목표 모금액
 }

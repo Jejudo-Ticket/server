@@ -3,9 +3,12 @@ package org.funding.fund.vo;
 import lombok.Data;
 
 @Data
-// 예금
+// 저축
 public class SavingsVO {
-    private Long depositId; // 예금 id
+    private Long savingsId; // 저축 id
     private Long productId; // 상품 id
-    private String earlyTerminationPolicy; // 예금 조기 해지
+    private Integer periodDays; // 상품기간
+    private Double interestRate;  // 연이율 (%)
+    private String successCondition; // 목표 달성 조건 (nullable)
+
 }

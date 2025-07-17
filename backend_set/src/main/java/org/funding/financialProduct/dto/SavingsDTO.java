@@ -1,8 +1,17 @@
 package org.funding.financialProduct.dto;
 
-import org.funding.fund.dto.FundDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-public class SavingsDTO extends FundDTO {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
+public class SavingsDTO extends FinancialProductDTO {
     private Integer periodDays;
     private Double interestRate;
     private String successCondition;

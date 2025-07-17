@@ -1,9 +1,13 @@
 package org.funding.fund.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class DonationVO {
     private Long donationId; // 기부 상품 id

@@ -1,10 +1,14 @@
 package org.funding.fund.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.funding.fund.vo.enumType.ProgressType;
 
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class FundVO {
     private Long fundId; // 펀딩 id

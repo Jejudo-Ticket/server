@@ -1,10 +1,12 @@
 package org.funding.fund.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.funding.fund.vo.enumType.FundType;
 
-import java.math.BigDecimal;
-
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 public class FinancialProductVO {
     private Long productId; // 상품 id

@@ -1,11 +1,14 @@
 package org.funding.fund.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-// 대출
 public class LoanVO {
     private Long installmentId; // 대출 id
     private Long productId; // 상품 id

@@ -1,9 +1,12 @@
 package org.funding.fund.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
-// 저축
 public class SavingsVO {
     private Long savingsId; // 저축 id
     private Long productId; // 상품 id

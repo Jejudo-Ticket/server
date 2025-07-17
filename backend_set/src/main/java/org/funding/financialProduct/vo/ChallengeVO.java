@@ -1,10 +1,8 @@
-package org.funding.fund.vo;
+package org.funding.financialProduct.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.math.BigDecimal;
 
 @NoArgsConstructor
 @AllArgsConstructor

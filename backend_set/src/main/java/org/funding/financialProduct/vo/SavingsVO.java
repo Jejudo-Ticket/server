@@ -1,4 +1,4 @@
-package org.funding.fund.vo;
+package org.funding.financialProduct.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

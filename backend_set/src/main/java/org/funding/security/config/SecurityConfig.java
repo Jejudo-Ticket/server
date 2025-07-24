@@ -101,9 +101,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             // 필터 등록 순서
             .addFilterBefore(encodingFilter(), org.springframework.security.web.csrf.CsrfFilter.class)
-            .addFilterBefore(authenticationErrorFilter, UsernamePasswordAuthenticationFilter.class)
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-            .addFilterBefore(jwtUsernamePasswordAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+//            .addFilterBefore(authenticationErrorFilter, UsernamePasswordAuthenticationFilter.class)
+//            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+//            .addFilterBefore(jwtUsernamePasswordAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
 
             // 예외 처리 핸들러
             .exceptionHandling()

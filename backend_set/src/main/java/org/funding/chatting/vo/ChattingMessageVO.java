@@ -1,6 +1,6 @@
 package org.funding.chatting.vo;
 
-public class ChatMessageVO {
+public class ChattingMessageVO {
     private Long id;
     private Long roomId;
     private String sender;

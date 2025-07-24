@@ -1,5 +1,5 @@
 package org.funding.chatting.dto;
 
-public class ChatRoom {
+public class ChattingRoom {
     private String roomId;
 }

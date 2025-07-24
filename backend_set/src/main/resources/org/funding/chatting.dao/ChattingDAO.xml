@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.funding.chatting.dao.ChatDAO">
+<mapper namespace="org.funding.chatting.dao.ChattingDAO">
 
-    <insert id="saveMessage" parameterType="org.funding.chatting.dto.ChatMessage">
+    <insert id="saveMessage" parameterType="org.funding.chatting.dto.ChattingMessage">
         INSERT INTO chat_message (room_id, sender, content, timestamp)
         VALUES (#{roomId}, #{sender}, #{content}, NOW())
     </insert>
 
-    <select id="findMessagesByRoomId" resultType="org.funding.chatting.dto.ChatMessage">
+    <select id="findMessagesByRoomId" resultType="org.funding.chatting.dto.ChattingMessage">
         SELECT id, room_id, sender, content, DATE_FORMAT(timestamp, '%Y-%m-%d %H:%i:%s') as timestamp
         FROM chat_message
         WHERE room_id = #{roomId}

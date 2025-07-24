@@ -1,9 +1,9 @@
 package org.funding.chatting.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.funding.chatting.dto.ChatMessage;
+import org.funding.chatting.dto.ChattingMessage;
 import org.funding.chatting.dto.GreetingMessage;
-import org.funding.chatting.service.ChatService;
+import org.funding.chatting.service.ChattingService;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -17,9 +17,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class ChatController {
+public class ChattingController {
 
-    private final ChatService chatService;
+    private final ChattingService chattingService;
 
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
@@ -29,16 +29,16 @@ public class ChatController {
 
     @MessageMapping("/chat/{roomId}")
     @SendTo("/topic/chat/{roomId}")
-    public ChatMessage chat(@DestinationVariable Long roomId, ChatMessage message) throws Exception {
+    public ChattingMessage chat(@DestinationVariable Long roomId, ChattingMessage message) throws Exception {
         message.setRoomId(roomId);
-        chatService.saveMessage(message); //db 저장
+        chattingService.saveMessage(message); //db 저장
 
         return message;
     }
 
     @GetMapping("/chat/history/{roomId}")
-    public List<ChatMessage> getChatHistory(@PathVariable Long roomId) {
+    public List<ChattingMessage> getChatHistory(@PathVariable Long roomId) {
         System.out.println("🔥 채팅 내역 요청 roomId = " + roomId);
-        return chatService.getMessages(roomId);
+        return chattingService.getMessages(roomId);
     }
 }

@@ -39,7 +39,7 @@ import javax.servlet.http.HttpServletRequest;
 @MapperScan(basePackages = {"org.funding.security.account.mapper"})
 @ComponentScan(basePackages = {"org.funding.security"})
 @RequiredArgsConstructor
-@EnableWebMvc
+// @EnableWebMvc
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final UserDetailsService userDetailsService;
@@ -121,7 +121,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // 권한 설정
             http
                     .authorizeRequests()
-                    .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v2/api-docs", "/v3/api-docs", "/swagger-resources/**", "/webjars/**", "/api/project/**", "/chat-app/**", "/topic/**", "/api/chat/history/**","/api/app/chat/history/**" ).permitAll()
+                    .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v2/api-docs", "/v3/api-docs", "/swagger-resources/**", "/webjars/**", "/api/project/**", "/api/chat/history/**","/api/app/chat/history/**" ).permitAll()
             .antMatchers("/api/security/all").permitAll()
             .antMatchers("/api/security/member").hasRole("MEMBER")
             .antMatchers("/api/security/admin").hasRole("ADMIN")

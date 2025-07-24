@@ -28,6 +28,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
     protected String[] getServletMappings() {
         return new String[] {
                 "/",
+                "/api/**", // 이 줄을 추가하거나 "/api/**"로 변경
                 "/swagger-ui.html",
                 "/swagger-resources/**",
                 "/v2/api-docs",

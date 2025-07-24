@@ -121,10 +121,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // 권한 설정
             http
                     .authorizeRequests()
+                    .antMatchers("/swagger-ui.html",
+                            "/swagger-ui/**",
+                            "/v2/api-docs",
+                            "/v3/api-docs",
+                            "/swagger-resources/**",
+                            "/webjars/**",
+                            "/mail/send",
+                            "mail/verify",
+                            "/ai/ask",
+                            "/ai/fund",
+                            "/badge/create",
+                            "/badge/{id}",
+                            "/ai/{fundId}/ai-recommend",
+                            "/badge/all/badge",
+                            "/retryVotes/do",
+                            "/retryVotes/cancel",
+                            "/ai/analyze-image").permitAll()
                     .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v2/api-docs", "/v3/api-docs", "/swagger-resources/**", "/webjars/**", "/api/project/**", "/api/chat/history/**","/api/app/chat/history/**" ).permitAll()
             .antMatchers("/api/security/all").permitAll()
             .antMatchers("/api/security/member").hasRole("MEMBER")
             .antMatchers("/api/security/admin").hasRole("ADMIN")
+            .antMatchers("/api/fund/**").permitAll()  // 펀딩 API 테스트용 - 추후 인증 필요시 제거
+           //.antMatchers("/api/fund/create/**").hasRole("FINANCE")
+           //.antMatchers("/api/fund/list").permitAll()
+           //..antMatchers("/api/fund/admin").hasRole("ADMIN")
+            .antMatchers("/api/project/list/detail/**").permitAll()  // detail 조회는 누구나
 
             .anyRequest().authenticated();
   }
@@ -152,10 +174,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/assets/**",
             "/*",
             "/api/member/**",
+            "/api/project/**",
+            "/api/comment/**",
             "/swagger-ui.html",
             "/swagger-ui/**",
             "/v2/api-docs",
             "/v3/api-docs",
+            "/mail/send",
+            "/mail/verify",
+            "/ai/ask",
+            "/ai/fund",
+            "/badge/create",
+            "/badge/{id}",
+
+            "/badge/all/badge",
+            "/ai/{fundId}/ai-recommend",
             "/api/project/**",
             "/chat-app/**",
             "/websocket/**",

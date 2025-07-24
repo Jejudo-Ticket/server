@@ -31,6 +31,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Configuration
 @EnableWebSecurity
 @Slf4j
@@ -95,6 +97,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
+            .cors()
+            .and()
             // 필터 등록 순서
             .addFilterBefore(encodingFilter(), org.springframework.security.web.csrf.CsrfFilter.class)
             .addFilterBefore(authenticationErrorFilter, UsernamePasswordAuthenticationFilter.class)
@@ -117,11 +121,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             // 권한 설정
             http
                     .authorizeRequests()
-                    .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v2/api-docs", "/v3/api-docs", "/swagger-resources/**", "/webjars/**").permitAll()
+                    .antMatchers("/swagger-ui.html", "/swagger-ui/**", "/v2/api-docs", "/v3/api-docs", "/swagger-resources/**", "/webjars/**", "/api/project/**", "/chat-app/**", "/topic/**", "/api/chat/history/**","/api/app/chat/history/**" ).permitAll()
             .antMatchers("/api/security/all").permitAll()
             .antMatchers("/api/security/member").hasRole("MEMBER")
             .antMatchers("/api/security/admin").hasRole("ADMIN")
-            .antMatchers("/api/project/list/detail/**").permitAll()  // detail 조회는 누구나
+
             .anyRequest().authenticated();
   }
 
@@ -135,6 +139,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     config.addAllowedOriginPattern("*");
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
+    config.addAllowedOrigin("http://localhost:5173");
 
     source.registerCorsConfiguration("/**", config);
     return new CorsFilter(source);
@@ -151,7 +156,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-ui/**",
             "/v2/api-docs",
             "/v3/api-docs",
-            "/api/project/**"
+            "/api/project/**",
+            "/chat-app/**",
+            "/websocket/**",
+            "/ws/**",      // 혹시 사용하는 경로가 다를 경우 대비
+            "/topic/**",
+            "/api/chat/history/**"
     );
   }
 }

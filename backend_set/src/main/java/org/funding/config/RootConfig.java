@@ -17,7 +17,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySource({"classpath:/application.properties"})
-@MapperScan(basePackages = {"org.funding.user.dao", "org.funding.project.dao"})
+@MapperScan(basePackages = {"org.funding.user.dao", "org.funding.project.dao","org.funding.chatting.dao"})
 public class RootConfig {
   @Value("${jdbc.driver}")
   String driver;
@@ -62,6 +62,9 @@ public class RootConfig {
 
     // 데이터베이스 연결 설정
     sqlSessionFactory.setDataSource(dataSource);
+
+    sqlSessionFactory.setMapperLocations(applicationContext.getResources("classpath:/org/funding/chatting/dao/*.xml"));
+
 
     return sqlSessionFactory.getObject();
   }

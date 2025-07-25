@@ -24,7 +24,7 @@
                 role,
                 create_at,
                 update_at
-            FROM tbl_member
+            FROM member
             WHERE email = #{email}
         </select>
 

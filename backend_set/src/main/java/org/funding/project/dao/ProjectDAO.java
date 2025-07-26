@@ -1,12 +1,12 @@
 package org.funding.project.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.funding.project.dto.response.ProjectListDTO;
 import org.funding.project.vo.*;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Mapper
 public interface ProjectDAO {
 
     ProjectVO selectProjectById(Long projectId);

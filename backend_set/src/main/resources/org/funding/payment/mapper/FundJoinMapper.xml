@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="org.funding.payment.dao.FundJoinDAO">
+
+    <insert id="insertFundJoin" parameterType="org.funding.payment.vo.FundJoinVO">
+        INSERT INTO fund_join (
+            user_id,
+            join_number,
+            fund_id,
+            fund_name,
+            join_amount,
+            payment_method,
+            status,
+            join_date,
+            created_at,
+            updated_at
+        ) VALUES (
+            #{userId},
+            #{joinNumber},
+            #{fundId},
+            #{fundName},
+            #{joinAmount},
+            #{paymentMethod},
+            #{status},
+            #{joinDate},
+            NOW(),
+            NOW()
+        )
+    </insert>
+    
+    <select id="selectFundJoinByJoinNumber" parameterType="string" resultType="org.funding.payment.vo.FundJoinVO">
+        SELECT 
+            join_id as joinId,
+            user_id as userId,
+            join_number as joinNumber,
+            fund_id as fundId,
+            fund_name as fundName,
+            join_amount as joinAmount,
+            payment_method as paymentMethod,
+            status,
+            join_date as joinDate,
+            created_at as createdAt,
+            updated_at as updatedAt
+        FROM fund_join
+        WHERE join_number = #{joinNumber}
+    </select>
+    
+    <select id="selectFundJoinsByUserId" parameterType="long" resultType="org.funding.payment.vo.FundJoinVO">
+        SELECT 
+            join_id as joinId,
+            user_id as userId,
+            join_number as joinNumber,
+            fund_id as fundId,
+            fund_name as fundName,
+            join_amount as joinAmount,
+            payment_method as paymentMethod,
+            status,
+            join_date as joinDate,
+            created_at as createdAt,
+            updated_at as updatedAt
+        FROM fund_join
+        WHERE user_id = #{userId}
+        ORDER BY join_date DESC
+    </select>
+    
+    <select id="selectFundJoinsByUserIdAndStatus" resultType="org.funding.payment.vo.FundJoinVO">
+        SELECT 
+            join_id as joinId,
+            user_id as userId,
+            join_number as joinNumber,
+            fund_id as fundId,
+            fund_name as fundName,
+            join_amount as joinAmount,
+            payment_method as paymentMethod,
+            status,
+            join_date as joinDate,
+            created_at as createdAt,
+            updated_at as updatedAt
+        FROM fund_join
+        WHERE user_id = #{param1}
+          AND status = #{param2}
+        ORDER BY join_date DESC
+    </select>
+
+</mapper>

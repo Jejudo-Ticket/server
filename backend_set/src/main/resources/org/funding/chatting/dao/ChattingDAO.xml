@@ -10,7 +10,7 @@
     </insert>
 
     <select id="findMessagesByRoomId" resultType="org.funding.chatting.dto.ChattingMessage">
-        SELECT id, room_id, sender, content, DATE_FORMAT(timestamp, '%Y-%m-%d %H:%i:%s') as timestamp
+        SELECT id, room_id, sender, content, timestamp
         FROM chat_message
         WHERE room_id = #{roomId}
         ORDER BY timestamp ASC

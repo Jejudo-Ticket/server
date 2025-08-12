@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.funding.payment.dao.FundingInfoDAO">
+<mapper namespace="org.funding.domain.payment.dao.FundingInfoDAO">
     
     <!-- fund_id로 펀딩 정보 조회 -->
-    <select id="selectFundingInfoById" parameterType="Long" resultType="org.funding.payment.dto.FundingInfoDTO">
+    <select id="selectFundingInfoById" parameterType="Long" resultType="org.funding.domain.payment.dto.FundingInfoDTO">
         SELECT 
             f.fund_id as fundId,
             f.product_id as productId,

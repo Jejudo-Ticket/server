@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.funding.financialProduct.dao.LoanDAO">
+<mapper namespace="org.funding.domain.financialProduct.dao.LoanDAO">
 
     <!-- 대출 상품 정보 resultMap -->
-    <resultMap id="loanMap" type="org.funding.financialProduct.vo.LoanVO">
+    <resultMap id="loanMap" type="org.funding.domain.financialProduct.vo.LoanVO">
         <id property="installmentId" column="installment_id" />
         <result property="productId" column="product_id" />
         <result property="loanLimit" column="loan_limit" />
@@ -18,7 +18,7 @@
     </resultMap>
 
     <!-- 대출 상품 생성 -->
-    <insert id="insertLoan" parameterType="org.funding.financialProduct.vo.LoanVO" useGeneratedKeys="true" keyProperty="installmentId">
+    <insert id="insertLoan" parameterType="org.funding.domain.financialProduct.vo.LoanVO" useGeneratedKeys="true" keyProperty="installmentId">
         INSERT INTO loan (
             product_id, loan_limit, repayment_start_date, repayment_end_date, 
             min_interest_rate, max_interest_rate, reward, reward_condition
@@ -47,7 +47,7 @@
     </select>
 
     <!-- 대출 상품 업데이트 -->
-    <update id="update" parameterType="org.funding.financialProduct.vo.LoanVO">
+    <update id="update" parameterType="org.funding.domain.financialProduct.vo.LoanVO">
         UPDATE loan
         SET 
             loan_limit = #{loanLimit},

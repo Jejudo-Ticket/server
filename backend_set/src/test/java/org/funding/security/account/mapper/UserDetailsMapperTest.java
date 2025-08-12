@@ -3,10 +3,10 @@
 //import lombok.extern.log4j.Log4j2;
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.extension.ExtendWith;
-//import org.funding.config.RootConfig;
-//import org.funding.security.config.SecurityConfig;
-//import org.funding.security.account.domain.AuthVO;
-//import org.funding.security.account.domain.MemberVO;
+//import org.funding.global.config.RootConfig;
+//import org.funding.global.config.security.SecurityConfig;
+//import org.funding.global.domain.account.security.AuthVO;
+//import org.funding.global.domain.account.security.MemberVO;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;

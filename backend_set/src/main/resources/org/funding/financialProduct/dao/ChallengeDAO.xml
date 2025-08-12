@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.funding.financialProduct.dao.ChallengeDAO">
+<mapper namespace="org.funding.domain.financialProduct.dao.ChallengeDAO">
 
     <!-- 챌린지 상품 정보 resultMap -->
-    <resultMap id="challengeMap" type="org.funding.financialProduct.vo.ChallengeVO">
+    <resultMap id="challengeMap" type="org.funding.domain.financialProduct.vo.ChallengeVO">
         <id property="challengeId" column="challenge_id" />
         <result property="productId" column="product_id" />
         <result property="challengePeriodDays" column="challenge_period_days" />
@@ -15,7 +15,7 @@
     </resultMap>
 
     <!-- 챌린지 상품 생성 -->
-    <insert id="insertChallenge" parameterType="org.funding.financialProduct.vo.ChallengeVO" useGeneratedKeys="true" keyProperty="challengeId">
+    <insert id="insertChallenge" parameterType="org.funding.domain.financialProduct.vo.ChallengeVO" useGeneratedKeys="true" keyProperty="challengeId">
         INSERT INTO challenge (
             product_id, challenge_period_days, reward, reward_condition, verify_standard, challenge_start_date, challenge_end_date
         ) VALUES (
@@ -40,7 +40,7 @@
     </select>
 
     <!-- 챌린지 상품 업데이트 -->
-    <update id="update" parameterType="org.funding.financialProduct.vo.ChallengeVO">
+    <update id="update" parameterType="org.funding.domain.financialProduct.vo.ChallengeVO">
         UPDATE challenge
         SET 
             challenge_period_days = #{challengePeriodDays},

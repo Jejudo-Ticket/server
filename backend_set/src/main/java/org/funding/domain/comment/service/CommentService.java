@@ -1,0 +1,89 @@
+package org.funding.domain.comment.service;
+
+import lombok.RequiredArgsConstructor;
+import org.funding.domain.badge.service.BadgeService;
+import org.funding.domain.comment.dao.CommentDAO;
+import org.funding.domain.comment.dto.CommentResponseDTO;
+import org.funding.domain.comment.dto.InsertCommentRequestDTO;
+import org.funding.domain.comment.vo.CommentVO;
+import org.funding.domain.comment.vo.enumType.TargetType;
+import org.funding.domain.fund.dao.FundDAO;
+import org.funding.domain.fund.vo.FundVO;
+import org.funding.domain.project.dao.ProjectDAO;
+import org.funding.domain.project.vo.ProjectVO;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@RequiredArgsConstructor
+public class CommentService {
+
+    private final CommentDAO commentDAO;
+    private final BadgeService badgeService;
+    private final FundDAO fundDAO;
+    private ProjectDAO projectDAO;
+
+    public CommentResponseDTO addComment(InsertCommentRequestDTO requestDTO, Long userId) {
+        CommentVO commentVO = requestDTO.toVO();
+        commentVO.setUserId(userId);
+        commentDAO.insertComment(commentVO);
+        Long commentId = commentVO.getCommentId();
+
+        CommentVO commentById = commentDAO.getCommentById(commentId);
+
+        // 뱃지 권한 부여
+        badgeService.checkAndGrantBadges(userId);
+
+        // 프로젝트, 펀딩에 관한 댓글 등록 뱃지 권한 부여
+        if (requestDTO.getTargetType() == TargetType.Funding) {
+            FundVO fund = fundDAO.selectById(requestDTO.getTargetId());
+            Long projectId = fund.getProjectId();
+            ProjectVO project = projectDAO.selectProjectById(projectId);
+            Long projectUserId = project.getUserId();
+            badgeService.checkAndGrantBadges(projectUserId);
+        }
+
+        if (requestDTO.getTargetType() == TargetType.Project) {
+            ProjectVO project = projectDAO.selectProjectById(requestDTO.getTargetId());
+            Long projectUserId = project.getUserId();
+            badgeService.checkAndGrantBadges(projectUserId);
+        }
+
+        return CommentResponseDTO.fromVO(commentById);
+    }
+
+    public void deleteComment(Long commentId) {
+
+        CommentVO commentById = commentDAO.getCommentById(commentId);
+
+        if (commentById == null) {
+            // 삭제할 댓글이 없음.
+            return;
+        }
+
+        commentDAO.deleteComment(commentId);
+    }
+
+    public List<CommentResponseDTO> findAllComments(TargetType targetType, Long targetId) {
+
+        List<CommentVO> commentVOList = null;
+
+        switch (targetType) {
+            case Project:
+                commentVOList = commentDAO.getAllCommentsByProjectId(targetId);
+                break;
+
+            case Funding:
+                commentVOList = commentDAO.getAllCommentsByFundingId(targetId);
+                break;
+        }
+
+        return commentVOList.stream()
+                .map(CommentResponseDTO::fromVO)
+                .collect(Collectors.toList());
+
+
+    }
+}

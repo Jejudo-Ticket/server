@@ -7,8 +7,8 @@
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit.jupiter.SpringExtension;
-//import org.funding.config.RootConfig;
-//import org.funding.security.config.SecurityConfig;
+//import org.funding.global.config.RootConfig;
+//import org.funding.global.config.security.SecurityConfig;
 //
 //import static org.junit.jupiter.api.Assertions.*;
 //

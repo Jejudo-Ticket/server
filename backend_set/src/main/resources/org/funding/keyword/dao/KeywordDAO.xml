@@ -2,26 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.funding.keyword.dao.KeywordDAO">
+<mapper namespace="org.funding.domain.keyword.dao.KeywordDAO">
 
-    <select id="selectKeywordById" parameterType="Long" resultType="org.funding.keyword.vo.KeywordVO">
+    <select id="selectKeywordById" parameterType="Long" resultType="org.funding.domain.keyword.vo.KeywordVO">
         select *
         from keywords
         where keyword_id = #{keywordId}
     </select>
 
-    <select id="selectAllKeywords" resultType="org.funding.keyword.vo.KeywordVO">
+    <select id="selectAllKeywords" resultType="org.funding.domain.keyword.vo.KeywordVO">
         select *
         from keywords
     </select>
 
-    <select id="selectKeywordByName" parameterType="String" resultType="org.funding.keyword.vo.KeywordVO">
+    <select id="selectKeywordByName" parameterType="String" resultType="org.funding.domain.keyword.vo.KeywordVO">
         select *
         from keywords
         where name = #{name}
     </select>
 
-    <select id="selectKeywordsByCategoryName" parameterType="String" resultType="org.funding.keyword.vo.KeywordVO">
+    <select id="selectKeywordsByCategoryName" parameterType="String" resultType="org.funding.domain.keyword.vo.KeywordVO">
         select *
         from keywords
         where category_id = (select category_id
@@ -29,13 +29,13 @@
                             where name = #{categoryName})
     </select>
 
-    <select id="selectKeywordsByCategoryId" parameterType="Long" resultType="org.funding.keyword.vo.KeywordVO">
+    <select id="selectKeywordsByCategoryId" parameterType="Long" resultType="org.funding.domain.keyword.vo.KeywordVO">
         select *
         from keywords
         where category_id = #{categoryId}
     </select>
 
-    <insert id="insertKeyword" parameterType="org.funding.keyword.dto.KeywordRequestDTO">
+    <insert id="insertKeyword" parameterType="org.funding.domain.keyword.dto.KeywordRequestDTO">
         insert into keywords (category_id, name)
         values (#{categoryId}, #{name})
     </insert>
